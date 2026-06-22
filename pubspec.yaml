@@ -1,0 +1,73 @@
+import 'package:flutter/material.dart';
+import 'screens/home_screen.dart';
+import 'screens/product_detail_screen.dart';
+import 'models/product.dart';
+
+void main() {
+  runApp(const MiniKatalogApp());
+}
+
+class MiniKatalogApp extends StatefulWidget {
+  const MiniKatalogApp({super.key});
+
+  @override
+  State<MiniKatalogApp> createState() => _MiniKatalogAppState();
+}
+
+class _MiniKatalogAppState extends State<MiniKatalogApp> {
+  // Basit state güncelleme simülasyonu: sepetteki ürün listesi
+  final List<Product> cartItems = [];
+
+  void addToCart(Product product) {
+    setState(() {
+      cartItems.add(product);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Mini Katalog Uygulaması',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.indigo,
+        scaffoldBackgroundColor: const Color(0xFFF5F6FA),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.indigo,
+          foregroundColor: Colors.white,
+          centerTitle: true,
+          elevation: 0,
+        ),
+        cardTheme: CardThemeData(
+          elevation: 2,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+        useMaterial3: true,
+      ),
+      // Named Routes kullanımı (Gün 3 konusu)
+      initialRoute: '/',
+      routes: {
+        '/': (context) => HomeScreen(
+              cartItems: cartItems,
+              onAddToCart: addToCart,
+            ),
+      },
+      // Route Arguments ile sayfa geçişi (ürün detay sayfası dinamik
+      // olduğu için onGenerateRoute kullanılıyor)
+      onGenerateRoute: (settings) {
+        if (settings.name == '/detail') {
+          final product = settings.arguments as Product;
+          return MaterialPageRoute(
+            builder: (context) => ProductDetailScreen(
+              product: product,
+              onAddToCart: addToCart,
+            ),
+          );
+        }
+        return null;
+      },
+    );
+  }
+}
