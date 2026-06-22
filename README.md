@@ -1,3 +1,6 @@
+<img width="430" height="853" alt="proje android" src="https://github.com/user-attachments/assets/7ee4d2bf-7956-4fe8-a1da-8ce29cafba31" />
+<img width="420" height="857" alt="proje android 3" src="https://github.com/user-attachments/assets/f9471eb1-d752-4d91-9826-e1245dbbfbfb" />
+<img width="427" height="855" alt="proje android 2" src="https://github.com/user-attachments/assets/9209a442-616c-4d69-9606-4ac658a442c6" />
 # Mini Katalog Uygulaması
 
 Bu proje, Flutter Günlük Eğitim kapsamında geliştirilmiş basit fakat profesyonel
